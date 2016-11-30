@@ -3,7 +3,6 @@ from __future__ import (absolute_import, division, print_function,
 import datetime  # For datetime objects
 import os.path  # To manage paths
 import sys  # To find out the script name (in argv[0])
-import time
 
 # Import the backtrader platform
 import backtrader as bt
@@ -151,4 +150,4 @@ if __name__ == '__main__':
 
 	print('Final Portfolio Value: %.2f' % cerebro.broker.getvalue())
 
-	cerebro.plot()
+	# cerebro.plot()
