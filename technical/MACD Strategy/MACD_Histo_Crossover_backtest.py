@@ -3,14 +3,9 @@ from __future__ import (absolute_import, division, print_function,
 import datetime  # For datetime objects
 import os.path  # To manage paths
 import sys  # To find out the script name (in argv[0])
-import time
 
 # Import the backtrader platform
 import backtrader as bt
-<<<<<<< HEAD
-import backtrader.analyzers as btanalyzers
-=======
->>>>>>> c6f8d4b3ff4eecc227bb08ebfe9fdede8584500e
 import backtrader.feeds as btfeeds
 from backtrader.indicators import EMA
 
@@ -117,15 +112,6 @@ class macd_crossover(bt.Strategy):
 				# Keep track of the created order to avoid a 2nd order
 				self.order = self.sell()
 
-<<<<<<< HEAD
-	def stop(self):
-		print('==================================================')
-		print('Starting Value - %.2f' % self.broker.startingcash)
-		print('Ending   Value - %.2f' % self.broker.getvalue())
-		print('==================================================')
-
-=======
->>>>>>> c6f8d4b3ff4eecc227bb08ebfe9fdede8584500e
 if __name__ == '__main__':
 
 	cash = 10000.0
@@ -149,12 +135,6 @@ if __name__ == '__main__':
 	# Add the Data Feed to Cerebro
 	cerebro.adddata(data)
 
-<<<<<<< HEAD
-	# Analyzer
-	cerebro.addanalyzer(btanalyzers.SharpeRatio, _name='mysharpe')
-
-=======
->>>>>>> c6f8d4b3ff4eecc227bb08ebfe9fdede8584500e
 	# Set Cash
 	cerebro.broker.setcash(cash)
 
@@ -166,16 +146,8 @@ if __name__ == '__main__':
 
 	print('Starting Portfolio Value: %.2f' % cerebro.broker.getvalue())
 
-<<<<<<< HEAD
-	thestrats = cerebro.run()
-	thestrat = thestrats[0]
-
-	print('Final Portfolio Value: %.2f' % cerebro.broker.getvalue())
-	print('Sharpe Ratio:', thestrat.analyzers.mysharpe.get_analysis())
-=======
 	cerebro.run()
 
 	print('Final Portfolio Value: %.2f' % cerebro.broker.getvalue())
->>>>>>> c6f8d4b3ff4eecc227bb08ebfe9fdede8584500e
 
-	cerebro.plot()
+	# cerebro.plot()
