@@ -5,16 +5,12 @@ import os.path  # To manage paths
 import sys  # To find out the script name (in argv[0])
 import time
 import pandas as pd
-import numpy as np
-print(sys.path)
 
 # Import the backtrader platform
 import backtrader as bt
 import backtrader.analyzers as btanalyzers
 import backtrader.feeds as btfeeds
 from backtrader.indicators import EMA
-# from technical import MACD
-import helper_functions
 
 # Import custom classes
 sys.path.append('/Users/m4punk/Documents/Coding/python/QuantTrading/Quant-Strategies/helper_functions')
@@ -137,41 +133,37 @@ if __name__ == '__main__':
 
 	# Datas are in a subfolder of the samples. Need to find where the script is
 	# because it could have been called from anywhere
-	# dataframe = pd.read_csv('/Users/m4punk/Documents/Coding/python/QuantTrading/Quant-Strategies/datas/twtr.csv',
-	# 		parse_dates=True,
-	# 		index_col=0,
-	# 		na_values=['-']
-	# 	)
+	# modpath = os.path.dirname(os.path.abspath(sys.argv[0]))
+	# datapath = os.path.join(modpath, '../datas/bac_data_5yd_daily.csv')
 
-	# data = btfeeds.PandasData(
-	# 	dataname=dataframe,
-	# 	open=0,
-	# 	high=1,
-	# 	low=2,
-	# 	close=3,
-	# 	volume=4,
-	# 	openinterest=None
-	# )
-	data = btfeeds.GenericCSVData(
-			dataname='/Users/m4punk/Documents/Coding/python/QuantTrading/Quant-Strategies/datas/twtr.csv',
+	dataframe = pd.read_csv('/Users/m4punk/Documents/Coding/python/QuantTrading/Quant-Strategies/datas/twtr.csv')
 
+	data = btfeeds.PandasData(
+			dataname=dataframe,
 			fromdate=(datetime.datetime(2013, 11, 7)),
-			todate=(datetime.datetime(2017, 8, 22)),
-			timeframe=bt.TimeFrame.Days,
-
-			nullvalue='0.0',
-
-			dtformat=('%d-%b-%y'),
-
-			datetime=0,
-			high=2,
-			low=3,
-			open=1,
-			close=4,
-			volume=5,
-			openinterest=-1
+			todate=(datetime.datetime(2017, 8, 22))
 
 		)
+
+ #    # Create a Data Feed
+	# data = btfeeds.GenericCSVData(
+	# 		dataname='/Users/m4punk/Documents/Coding/python/QuantTrading/Quant-Strategies/datas/twtr.csv',
+
+	# 		fromdate=(datetime.datetime(2013, 11, 7)),
+	# 		todate=(datetime.datetime(2017, 8, 22)),
+
+	# 		nullvalue=0.0,
+
+	# 		dtformat=('%d-%b-%y'),
+
+	# 		datetime=0,
+	# 		high=2,
+	# 		low=3,
+	# 		open=1,
+	# 		close=4,
+	# 		volume=5
+
+	# 	)
 	# Add the Data Feed to Cerebro
 	cerebro.adddata(data)
 

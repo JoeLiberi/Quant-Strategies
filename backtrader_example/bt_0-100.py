@@ -3,6 +3,7 @@ from __future__ import (absolute_import, division, print_function,
 import datetime  # For datetime objects
 import os.path  # To manage paths
 import sys  # To find out the script name (in argv[0])
+import pandas as pd
 
 # Import the backtrader platform
 import backtrader as bt
@@ -112,14 +113,22 @@ if __name__ == '__main__':
 
 	# Datas are in a subfolder of the samples. Need to find where the script is
 	# because it could have been called from anywhere
-	modpath = os.path.dirname(os.path.abspath(sys.argv[0]))
-	datapath = os.path.join(modpath, '../datas/bac_data_5yd_daily.csv')
-
     # Create a Data Feed
-	data = btfeeds.YahooFinanceData(
-		dataname='BAC',
-		fromdate=datetime.datetime(2013, 1, 3),
-		todate=datetime.datetime(2015, 12, 31))
+	dataframe = pd.read_csv('/Users/m4punk/Documents/Coding/python/QuantTrading/Quant-Strategies/datas/twtr.csv',
+			parse_dates=True,
+			index_col=0,
+			na_values=['-']
+		)
+
+	data = btfeeds.PandasData(
+		dataname=dataframe,
+		open=0,
+		high=1,
+		low=2,
+		close=3,
+		volume=4,
+		openinterest=None
+	)
 
 	# Add a FixedSize sizer according to the stake
 	cerebro.addsizer(bt.sizers.FixedSize, stake=100)

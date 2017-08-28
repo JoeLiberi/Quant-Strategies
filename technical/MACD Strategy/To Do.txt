@@ -1,0 +1,6 @@
+To Do:
+
+- send email on notify_trade
+- setup a rasberry pi at the apt
+- install TWS on it and the quantstrat python enviroment
+- setup remote access just in case
