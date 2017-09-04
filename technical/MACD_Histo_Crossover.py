@@ -20,12 +20,6 @@ class MACD(bt.Indicator):
 		self.l.signal = EMA(self.l.macd, period=self.p.period_signal)
 		self.l.histo = self.l.macd - self.l.signal
 
-	# def signal(self):
-	# 	return self.l.signal[0]
-
-	# def histo(self):
-	# 	return self.l.histo[0]
-
 # Create a Stratey
 class macd_crossover(bt.Strategy):
 
@@ -127,7 +121,7 @@ if __name__ == '__main__':
 
     # Create a Data Feed
 	data = btfeeds.YahooFinanceData(
-		dataname='BAC',
+		dataname='AAPL',
 		fromdate=datetime.datetime(2013, 1, 3),
 		todate=datetime.datetime(2015, 12, 31))
 
@@ -138,7 +132,7 @@ if __name__ == '__main__':
 	cerebro.broker.setcash(cash)
 
 	# Add a FixedSize sizer according to the stake
-	cerebro.addsizer(bt.sizers.FixedSize, stake=700)
+	cerebro.addsizer(bt.sizers.FixedSize, stake=100)
 
     # Set the commission - 0.1% ... divide by 100 to remove the %
 	cerebro.broker.setcommission(commission=0.001)
